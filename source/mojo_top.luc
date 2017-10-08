@@ -1,0 +1,71 @@
+module mojo_top (
+    input clk,             // 50MHz clock
+    input rst_n,           // reset button (active low)
+    input result_s,        // sum coming from adder
+    input result_cout,     // carry coming from adder
+    output input_a,        // A coming out from FPGA
+    output input_b,        //B coming out from FPGA
+    output input_cin,      //Cin coming out from FPGA
+    output io_led [3][8]   // LEDs on IO Shield
+  ) {
+  
+  sig rst;                  // reset signal
+  
+  .clk(clk) {
+    // The reset conditioner is used to synchronize the reset signal to the FPGA
+    // clock. This ensures the entire FPGA comes out of reset at the same time.
+    reset_conditioner reset_cond;
+    
+    .rst(rst){
+      fsm state(#INIT (STAY)) = {STAY, MOVE, END}; //FSM involving 3 states. STAY,MOVE,END
+      dff count[4];  // 4BITS. count[3] for end of check. count[2:0] ->3 bits for 8 possible outputs.
+      dff timer[28]; // 28 bit timer used to calculate the interval of checking
+      dff answer[2]; // variable used to store the wrong input from the adder
+    }
+    }
+  sig result[2]; //To compute the sum of outputs A,B,Cin
+  always {
+    io_led = 3x{{8h00}};    // turn LEDs offsssss
+    reset_cond.in = ~rst_n;   // input raw inverted reset signal
+    rst = reset_cond.out;     // conditioned reset
+    
+    input_a = count.q[0];   //A = count[0]
+    input_b = count.q[1];   //B = count[1]
+    input_cin = count.q[2]; //Cin = count[2]
+    
+    //LED[2:0] will show the A,B,C output
+    //LED [4:3] will show the wrong input from the adder
+    //LED [6:5] will show the expected input from the adder
+    //LED[7] will only light up if all combinations are tested and correct. Else, it will remain stuck at the combination until input is rectified.
+    
+    case (state.q) {
+      state.STAY:   //In the stay state,it will display the current input and expected output.
+        timer.d = timer.q + 1;
+        io_led[0][2:0] = count.q[2:0];
+        io_led[0][5] = result_s;
+        io_led[0][6] = result_cout;
+        if (timer.q[27] == 1) {         //  After an interval of 2^27/5000000 ~~ 2.68seconds, the FPGA will cross check the sum and carry with the expected result.
+          timer.d[27] = 0;
+          result = count.q[0]+count.q[1]+count.q[2];
+          io_led[0][4:3] = answer.q;          
+          if (result[1] == result_cout && result[0] == result_s){ // If the sum and carry is correct, the state will transition to state.MOVE.
+            state.d = state.MOVE;
+            answer.d = 00;
+          } else {       //If the sum and carry is wrong, the wrong sum and carry will be stored in answer(dff) and displayed on the led.
+            answer.d = result; 
+            state.d = state.STAY;
+          }
+        }
+      state.MOVE: // In the move state, it will transition to the next output combination
+        count.d = count.q + 1;  // Next output combination
+        if (count.q[3] == 1){  // If all possible combinations have been exhausted, transition to state.END
+                  state.d = state.END;
+          }
+        else{ //transition to state.STAY to verify correct input
+          state.d = state.STAY;
+          }
+      state.END: //In the end state, it will display that the check is over and has succeeded. 
+        io_led[0][7]= 1;
+        }   
+      }
+  }

@@ -1,0 +1,5 @@
+NET "result_s" LOC = P51 | IOSTANDARD = LVTTL;
+NET "result_cout" LOC = P41 | IOSTANDARD = LVTTL;
+NET "input_a" LOC = P50 | IOSTANDARD = LVTTL;
+NET "input_b" LOC = P34 | IOSTANDARD = LVTTL;
+NET "input_cin" LOC = P40 | IOSTANDARD = LVTTL;
