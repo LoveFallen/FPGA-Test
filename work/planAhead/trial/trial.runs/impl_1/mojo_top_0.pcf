@@ -1,5 +1,5 @@
 //! **************************************************************************
-// Written by: Map P.20131013 on Sun Oct 08 22:25:06 2017
+// Written by: Map P.20131013 on Tue Oct 10 10:39:51 2017
 //! **************************************************************************
 
 SCHEMATIC START;
@@ -46,9 +46,10 @@ TIMEGRP clk = BEL "M_timer_q_0" BEL "M_timer_q_1" BEL "M_timer_q_2" BEL
         "M_timer_q_25" BEL "M_timer_q_26" BEL "M_timer_q_27" BEL
         "M_state_q_FSM_FFd2" BEL "M_state_q_FSM_FFd1" BEL "M_count_q_0" BEL
         "M_count_q_1" BEL "M_count_q_2" BEL "M_count_q_3" BEL "M_answer_q_0"
-        BEL "M_answer_q_1" BEL "reset_cond/M_stage_q_3" BEL
-        "reset_cond/M_stage_q_2" BEL "reset_cond/M_stage_q_1" BEL
-        "reset_cond/M_stage_q_0" BEL "clk_BUFGP/BUFG";
+        BEL "M_answer_q_1" BEL "M_state_q_FSM_FFd2_1" BEL
+        "reset_cond/M_stage_q_3" BEL "reset_cond/M_stage_q_2" BEL
+        "reset_cond/M_stage_q_1" BEL "reset_cond/M_stage_q_0" BEL
+        "clk_BUFGP/BUFG";
 TS_clk = PERIOD TIMEGRP "clk" 50 MHz HIGH 50%;
 SCHEMATIC END;
 

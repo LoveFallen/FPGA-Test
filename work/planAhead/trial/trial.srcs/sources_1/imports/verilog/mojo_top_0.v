@@ -54,12 +54,12 @@ module mojo_top_0 (
       STAY_state: begin
         M_timer_d = M_timer_q + 1'h1;
         io_led[0+0+2-:3] = M_count_q[0+2-:3];
-        io_led[0+5+0-:1] = result_s;
-        io_led[0+6+0-:1] = result_cout;
+        io_led[0+3+0-:1] = result_s;
+        io_led[0+4+0-:1] = result_cout;
+        io_led[0+5+1-:2] = M_answer_q;
         if (M_timer_q[27+0-:1] == 1'h1) begin
           M_timer_d[27+0-:1] = 1'h0;
           result = M_count_q[0+0-:1] + M_count_q[1+0-:1] + M_count_q[2+0-:1];
-          io_led[0+3+1-:2] = M_answer_q;
           if (result[1+0-:1] == result_cout && result[0+0-:1] == result_s) begin
             M_state_d = MOVE_state;
             M_answer_d = 1'h0;

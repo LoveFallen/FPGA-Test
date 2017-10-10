@@ -3,7 +3,7 @@ Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 --> 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.11 secs
+Total CPU time to Xst completion: 0.15 secs
  
 --> Reading design: mojo_top_0.prj
 
@@ -91,8 +91,8 @@ Synthesizing Unit <mojo_top_0>.
     | Implementation     | LUT                                            |
     -----------------------------------------------------------------------
     Found 28-bit adder for signal <M_timer_q[27]_GND_1_o_add_0_OUT> created at line 55.
-    Found 2-bit adder for signal <n0067> created at line 61.
-    Found 2-bit adder for signal <BUS_0002_GND_1_o_add_3_OUT> created at line 61.
+    Found 2-bit adder for signal <n0065> created at line 62.
+    Found 2-bit adder for signal <BUS_0002_GND_1_o_add_3_OUT> created at line 62.
     Found 4-bit adder for signal <M_count_q[3]_GND_1_o_add_10_OUT> created at line 73.
     Found 1-bit comparator equal for signal <BUS_0002_result_cout_equal_5_o> created at line 63
     Found 1-bit comparator equal for signal <BUS_0002_result_s_equal_6_o> created at line 63
@@ -100,7 +100,7 @@ Synthesizing Unit <mojo_top_0>.
 	inferred   4 Adder/Subtractor(s).
 	inferred  34 D-type flip-flop(s).
 	inferred   2 Comparator(s).
-	inferred   3 Multiplexer(s).
+	inferred   1 Multiplexer(s).
 	inferred   1 Finite State Machine(s).
 Unit <mojo_top_0> synthesized.
 
@@ -125,8 +125,8 @@ Macro Statistics
  4-bit register                                        : 2
 # Comparators                                          : 2
  1-bit comparator equal                                : 2
-# Multiplexers                                         : 3
- 1-bit 2-to-1 multiplexer                              : 3
+# Multiplexers                                         : 1
+ 1-bit 2-to-1 multiplexer                              : 1
 # FSMs                                                 : 1
 
 =========================================================================
@@ -153,8 +153,6 @@ Macro Statistics
  Flip-Flops                                            : 34
 # Comparators                                          : 2
  1-bit comparator equal                                : 2
-# Multiplexers                                         : 3
- 1-bit 2-to-1 multiplexer                              : 3
 # FSMs                                                 : 1
 
 =========================================================================
@@ -177,6 +175,7 @@ Optimizing unit <mojo_top_0> ...
 Mapping all equations...
 Building and optimizing final netlist ...
 Found area constraint ratio of 100 (+ 0) on block mojo_top_0, actual ratio is 1.
+FlipFlop M_state_q_FSM_FFd2 has been replicated 1 time(s)
 
 Final Macro Processing ...
 
@@ -188,8 +187,8 @@ Unit <mojo_top_0> processed.
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 40
- Flip-Flops                                            : 40
+# Registers                                            : 41
+ Flip-Flops                                            : 41
 
 =========================================================================
 
@@ -212,21 +211,21 @@ Top Level Output File Name         : mojo_top_0.ngc
 
 Primitive and Black Box Usage:
 ------------------------------
-# BELS                             : 109
+# BELS                             : 135
 #      GND                         : 2
 #      INV                         : 3
 #      LUT1                        : 27
-#      LUT2                        : 5
-#      LUT3                        : 9
-#      LUT4                        : 3
-#      LUT5                        : 1
+#      LUT2                        : 2
+#      LUT3                        : 39
+#      LUT4                        : 1
+#      LUT5                        : 2
 #      LUT6                        : 3
 #      MUXCY                       : 27
 #      VCC                         : 1
 #      XORCY                       : 28
-# FlipFlops/Latches                : 40
+# FlipFlops/Latches                : 41
 #      FD                          : 2
-#      FDR                         : 2
+#      FDR                         : 3
 #      FDRE                        : 32
 #      FDS                         : 4
 # Clock Buffers                    : 1
@@ -242,15 +241,15 @@ Selected Device : 6slx9tqg144-2
 
 
 Slice Logic Utilization: 
- Number of Slice Registers:              40  out of  11440     0%  
- Number of Slice LUTs:                   51  out of   5720     0%  
-    Number used as Logic:                51  out of   5720     0%  
+ Number of Slice Registers:              41  out of  11440     0%  
+ Number of Slice LUTs:                   77  out of   5720     1%  
+    Number used as Logic:                77  out of   5720     1%  
 
 Slice Logic Distribution: 
- Number of LUT Flip Flop pairs used:     55
-   Number with an unused Flip Flop:      15  out of     55    27%  
-   Number with an unused LUT:             4  out of     55     7%  
-   Number of fully used LUT-FF pairs:    36  out of     55    65%  
+ Number of LUT Flip Flop pairs used:     82
+   Number with an unused Flip Flop:      41  out of     82    50%  
+   Number with an unused LUT:             5  out of     82     6%  
+   Number of fully used LUT-FF pairs:    36  out of     82    43%  
    Number of unique control sets:         5
 
 IO Utilization: 
@@ -281,7 +280,7 @@ Clock Information:
 -----------------------------------+------------------------+-------+
 Clock Signal                       | Clock buffer(FF name)  | Load  |
 -----------------------------------+------------------------+-------+
-clk                                | BUFGP                  | 40    |
+clk                                | BUFGP                  | 41    |
 -----------------------------------+------------------------+-------+
 
 Asynchronous Control Signals Information:
@@ -292,9 +291,9 @@ Timing Summary:
 ---------------
 Speed Grade: -2
 
-   Minimum period: 3.999ns (Maximum Frequency: 250.063MHz)
+   Minimum period: 3.932ns (Maximum Frequency: 254.323MHz)
    Minimum input arrival time before clock: 4.797ns
-   Maximum output required time after clock: 5.708ns
+   Maximum output required time after clock: 6.163ns
    Maximum combinational path delay: 5.901ns
 
 Timing Details:
@@ -303,10 +302,10 @@ All values displayed in nanoseconds (ns)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'clk'
-  Clock period: 3.999ns (frequency: 250.063MHz)
-  Total number of paths / destination ports: 557 / 105
+  Clock period: 3.932ns (frequency: 254.323MHz)
+  Total number of paths / destination ports: 591 / 107
 -------------------------------------------------------------------------
-Delay:               3.999ns (Levels of Logic = 3)
+Delay:               3.932ns (Levels of Logic = 3)
   Source:            M_count_q_2 (FF)
   Destination:       M_answer_q_0 (FF)
   Source Clock:      clk rising
@@ -316,18 +315,18 @@ Delay:               3.999ns (Levels of Logic = 3)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDRE:C->Q             7   0.525   1.186  M_count_q_2 (M_count_q_2)
-     LUT6:I2->O            2   0.254   0.726  M_state_q_FSM_FFd2-In11 (M_state_q_FSM_FFd2-In1)
+     FDRE:C->Q             7   0.525   1.138  M_count_q_2 (M_count_q_2)
+     LUT6:I3->O            2   0.235   0.726  M_state_q_FSM_FFd2-In11 (M_state_q_FSM_FFd2-In1)
      LUT5:I4->O            2   0.254   0.726  Reset_OR_DriverANDClockEnable1 (Reset_OR_DriverANDClockEnable)
      LUT6:I5->O            1   0.254   0.000  M_answer_q_1_rstpot (M_answer_q_1_rstpot)
      FD:D                      0.074          M_answer_q_1
     ----------------------------------------
-    Total                      3.999ns (1.361ns logic, 2.638ns route)
-                                       (34.0% logic, 66.0% route)
+    Total                      3.932ns (1.342ns logic, 2.590ns route)
+                                       (34.1% logic, 65.9% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'clk'
-  Total number of paths / destination ports: 10 / 7
+  Total number of paths / destination ports: 12 / 8
 -------------------------------------------------------------------------
 Offset:              4.797ns (Levels of Logic = 4)
   Source:            result_cout (PAD)
@@ -349,23 +348,23 @@ Offset:              4.797ns (Levels of Logic = 4)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'clk'
-  Total number of paths / destination ports: 26 / 11
+  Total number of paths / destination ports: 24 / 11
 -------------------------------------------------------------------------
-Offset:              5.708ns (Levels of Logic = 2)
-  Source:            M_state_q_FSM_FFd1 (FF)
+Offset:              6.163ns (Levels of Logic = 2)
+  Source:            M_state_q_FSM_FFd2 (FF)
   Destination:       io_led<6> (PAD)
   Source Clock:      clk rising
 
-  Data Path: M_state_q_FSM_FFd1 to io_led<6>
+  Data Path: M_state_q_FSM_FFd2 to io_led<6>
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDR:C->Q             14   0.525   1.355  M_state_q_FSM_FFd1 (M_state_q_FSM_FFd1)
-     LUT3:I0->O            1   0.235   0.681  _n01161 (io_led_5_OBUF)
-     OBUF:I->O                 2.912          io_led_5_OBUF (io_led<5>)
+     FDR:C->Q             42   0.525   1.795  M_state_q_FSM_FFd2 (M_state_q_FSM_FFd2)
+     LUT3:I1->O            1   0.250   0.681  _n01161 (io_led_3_OBUF)
+     OBUF:I->O                 2.912          io_led_3_OBUF (io_led<3>)
     ----------------------------------------
-    Total                      5.708ns (3.672ns logic, 2.036ns route)
-                                       (64.3% logic, 35.7% route)
+    Total                      6.163ns (3.687ns logic, 2.476ns route)
+                                       (59.8% logic, 40.2% route)
 
 =========================================================================
 Timing constraint: Default path analysis
@@ -373,15 +372,15 @@ Timing constraint: Default path analysis
 -------------------------------------------------------------------------
 Delay:               5.901ns (Levels of Logic = 3)
   Source:            result_cout (PAD)
-  Destination:       io_led<6> (PAD)
+  Destination:       io_led<4> (PAD)
 
-  Data Path: result_cout to io_led<6>
+  Data Path: result_cout to io_led<4>
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
      IBUF:I->O             2   1.328   0.726  result_cout_IBUF (result_cout_IBUF)
-     LUT3:I2->O            1   0.254   0.681  _n01151 (io_led_6_OBUF)
-     OBUF:I->O                 2.912          io_led_6_OBUF (io_led<6>)
+     LUT3:I2->O            1   0.254   0.681  _n01151 (io_led_4_OBUF)
+     OBUF:I->O                 2.912          io_led_4_OBUF (io_led<4>)
     ----------------------------------------
     Total                      5.901ns (4.494ns logic, 1.407ns route)
                                        (76.2% logic, 23.8% route)
@@ -396,18 +395,18 @@ Clock to Setup on destination clock clk
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-clk            |    3.999|         |         |         |
+clk            |    3.932|         |         |         |
 ---------------+---------+---------+---------+---------+
 
 =========================================================================
 
 
 Total REAL time to Xst completion: 4.00 secs
-Total CPU time to Xst completion: 4.17 secs
+Total CPU time to Xst completion: 4.12 secs
  
 --> 
 
-Total memory usage is 249496 kilobytes
+Total memory usage is 248984 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :    0 (   0 filtered)

@@ -42,12 +42,12 @@ module mojo_top (
       state.STAY:   //In the stay state,it will display the current input and expected output.
         timer.d = timer.q + 1;
         io_led[0][2:0] = count.q[2:0];
-        io_led[0][5] = result_s;
-        io_led[0][6] = result_cout;
-        if (timer.q[27] == 1) {         //  After an interval of 2^27/5000000 ~~ 2.68seconds, the FPGA will cross check the sum and carry with the expected result.
+        io_led[0][3] = result_s;
+        io_led[0][4] = result_cout;
+        io_led[0][6:5] = answer.q;         
+        if (timer.q[27] == 1) {      //  After an interval of 2^27/5000000 ~~ 2.68seconds, the FPGA will cross check the sum and carry with the expected result.
           timer.d[27] = 0;
-          result = count.q[0]+count.q[1]+count.q[2];
-          io_led[0][4:3] = answer.q;          
+          result = count.q[0]+count.q[1]+count.q[2]; 
           if (result[1] == result_cout && result[0] == result_s){ // If the sum and carry is correct, the state will transition to state.MOVE.
             state.d = state.MOVE;
             answer.d = 00;

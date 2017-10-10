@@ -45,8 +45,8 @@ Synthesizing Unit <mojo_top_0>.
     | Implementation     | LUT                                            |
     -----------------------------------------------------------------------
     Found 28-bit adder for signal <M_timer_q[27]_GND_1_o_add_0_OUT> created at line 55.
-    Found 2-bit adder for signal <n0067> created at line 61.
-    Found 2-bit adder for signal <BUS_0002_GND_1_o_add_3_OUT> created at line 61.
+    Found 2-bit adder for signal <n0065> created at line 62.
+    Found 2-bit adder for signal <BUS_0002_GND_1_o_add_3_OUT> created at line 62.
     Found 4-bit adder for signal <M_count_q[3]_GND_1_o_add_10_OUT> created at line 73.
     Found 1-bit comparator equal for signal <BUS_0002_result_cout_equal_5_o> created at line 63
     Found 1-bit comparator equal for signal <BUS_0002_result_s_equal_6_o> created at line 63
@@ -54,7 +54,7 @@ Synthesizing Unit <mojo_top_0>.
 	inferred   4 Adder/Subtractor(s).
 	inferred  34 D-type flip-flop(s).
 	inferred   2 Comparator(s).
-	inferred   3 Multiplexer(s).
+	inferred   1 Multiplexer(s).
 	inferred   1 Finite State Machine(s).
 Unit <mojo_top_0> synthesized.
 
@@ -79,8 +79,8 @@ Macro Statistics
  4-bit register                                        : 2
 # Comparators                                          : 2
  1-bit comparator equal                                : 2
-# Multiplexers                                         : 3
- 1-bit 2-to-1 multiplexer                              : 3
+# Multiplexers                                         : 1
+ 1-bit 2-to-1 multiplexer                              : 1
 # FSMs                                                 : 1
 
 =========================================================================
@@ -107,8 +107,6 @@ Macro Statistics
  Flip-Flops                                            : 34
 # Comparators                                          : 2
  1-bit comparator equal                                : 2
-# Multiplexers                                         : 3
- 1-bit 2-to-1 multiplexer                              : 3
 # FSMs                                                 : 1
 
 =========================================================================
@@ -131,6 +129,7 @@ Optimizing unit <mojo_top_0> ...
 Mapping all equations...
 Building and optimizing final netlist ...
 Found area constraint ratio of 100 (+ 0) on block mojo_top_0, actual ratio is 1.
+FlipFlop M_state_q_FSM_FFd2 has been replicated 1 time(s)
 
 Final Macro Processing ...
 
@@ -142,8 +141,8 @@ Unit <mojo_top_0> processed.
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 40
- Flip-Flops                                            : 40
+# Registers                                            : 41
+ Flip-Flops                                            : 41
 
 =========================================================================
 
@@ -167,7 +166,7 @@ Clock Information:
 -----------------------------------+------------------------+-------+
 Clock Signal                       | Clock buffer(FF name)  | Load  |
 -----------------------------------+------------------------+-------+
-clk                                | BUFGP                  | 40    |
+clk                                | BUFGP                  | 41    |
 -----------------------------------+------------------------+-------+
 
 Asynchronous Control Signals Information:
@@ -178,9 +177,9 @@ Timing Summary:
 ---------------
 Speed Grade: -2
 
-   Minimum period: 3.999ns (Maximum Frequency: 250.063MHz)
+   Minimum period: 3.932ns (Maximum Frequency: 254.323MHz)
    Minimum input arrival time before clock: 4.797ns
-   Maximum output required time after clock: 5.708ns
+   Maximum output required time after clock: 6.163ns
    Maximum combinational path delay: 5.901ns
 
 =========================================================================
