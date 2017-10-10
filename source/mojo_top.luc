@@ -44,15 +44,16 @@ module mojo_top (
         io_led[0][2:0] = count.q[2:0];
         io_led[0][3] = result_s;
         io_led[0][4] = result_cout;
-        io_led[0][6:5] = answer.q;         
+        io_led[0][6:5] = answer.q;
+        result = count.q[0]+count.q[1]+count.q[2];
+        answer.d = result;           
         if (timer.q[27] == 1) {      //  After an interval of 2^27/5000000 ~~ 2.68seconds, the FPGA will cross check the sum and carry with the expected result.
           timer.d[27] = 0;
-          result = count.q[0]+count.q[1]+count.q[2]; 
-          if (result[1] == result_cout && result[0] == result_s){ // If the sum and carry is correct, the state will transition to state.MOVE.
+          if (answer.q[1] == result_cout && answer.q[0] == result_s){ // If the sum and carry is correct, the state will transition to state.MOVE.
             state.d = state.MOVE;
             answer.d = 00;
           } else {       //If the sum and carry is wrong, the wrong sum and carry will be stored in answer(dff) and displayed on the led.
-            answer.d = result; 
+            
             state.d = state.STAY;
           }
         }
